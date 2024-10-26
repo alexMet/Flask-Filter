@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_sqlalchemy import Model
 from marshmallow import Schema
 from typing import Union
 from flask_filter.schemas import deserialize_filters
@@ -20,7 +19,7 @@ class FlaskFilter(object):
     def register_model(self, DbModel, ModelSchema):
         self.__SCHEMA_MAP[DbModel] = ModelSchema
 
-    def search(self, DbModel: Model, filters: list,
+    def search(self, DbModel, filters: list,
                ModelSchema: Union[Schema, None] = None,
                limit: int = None, order_by=None):
         filters = deserialize_filters(filters, many=True)
